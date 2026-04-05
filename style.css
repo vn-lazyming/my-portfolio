@@ -1,4 +1,46 @@
 /* ==========================================================================
+   Color System
+   ========================================================================== */
+:root {
+  /* Primary Colors */
+  --color-primary: rgb(94, 234, 212);
+  --color-primary-light: rgba(94, 234, 212, 0.1);
+  --color-primary-border: rgba(94, 234, 212, 0.5);
+
+  /* Background Colors */
+  --color-background-light: rgb(15, 23, 42);
+  --color-background: #0c1222;
+  --color-background-nav: rgba(15, 23, 42, 0.9);
+
+  /* Text Colors */
+  --color-text-primary: rgb(226, 232, 240);
+  --color-text-secondary: #b0a99f;
+
+  /* Spacing */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 2rem;
+  --spacing-lg: 3rem;
+  --spacing-xl: 5rem;
+
+  /* Border Radius */
+  --border-radius-sm: 0.5rem;
+  --border-radius-md: 1rem;
+  --border-radius-lg: 2.5rem;
+
+  /* Font Sizes */
+  --font-size-xs: 1rem;
+  --font-size-sm: 1.6rem;
+  --font-size-md: 1.7rem;
+  --font-size-lg: 2.5rem;
+  --font-size-xl: 3.5rem;
+  --font-size-xxl: 5rem;
+
+  /* Shadows */
+  --shadow-sm: 0px 0px 7px #222831;
+}
+
+/* ==========================================================================
    Base Styles
    =========================================================================== */
 html {
@@ -11,6 +53,10 @@ body {
   font-family: "Inter", serif;
   margin: 0;
   padding: 0;
+}
+
+.body::-webkit-scrollbar {
+  display: none;
 }
 
 /* ==========================================================================
@@ -40,27 +86,32 @@ body {
   top: 0;
 }
 
-.navBar {
-  margin: 0 10rem 0 3rem;
+.navBar,
+.topNav {
+  margin-right: 10rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-/* Navigation Links */
+.navBar {
+  margin-left: 3rem;
+}
+
 .topNav a {
   padding: var(--spacing-md) var(--spacing-lg);
   border-radius: var(--border-radius-md);
   text-decoration: none;
   font-size: var(--font-size-lg);
   font-weight: 500;
+  font-family: "JetBrains Mono", monospace;
   color: var(--color-text-primary);
   transition: all 0.3s ease;
 }
 
 .topNav a:hover {
-  background-color: var(--color-background-hover);
-  color: var(--color-background);
+  background-color: #ddd;
+  color: black;
 }
 
 .topNav a.active {
@@ -71,10 +122,9 @@ body {
   margin: var(--spacing-md);
 }
 
-/* Mobile Navigation */
 .hambergerButton {
   display: none;
-  padding: var(--spacing-md) var(--spacing-lg);
+  padding: 1.4rem 1.6rem;
   border: none;
   background-color: transparent;
   cursor: pointer;
@@ -85,77 +135,8 @@ body {
 .hambergerIcon {
   display: block;
   width: 5rem;
-  padding: var(--spacing-md) var(--spacing-lg);
+  padding: 1.4rem 1.6rem;
   border-radius: var(--border-radius-md);
-  transition: all 0.3s ease;
-}
-
-/* Color System */
-:root {
-  /* Primary Colors */
-  --color-primary: rgb(94, 234, 212);
-  --color-primary-light: rgba(94, 234, 212, 0.1);
-  --color-primary-border: rgba(94, 234, 212, 0.5);
-  
-  /* Background Colors */
-  --color-background-light: rgb(15, 23, 42);
-  --color-background: #0c1222;
-  --color-background-nav: rgba(15, 23, 42, 0.9);
-  --color-background-hover: seashell;
-  
-  /* Text Colors */
-  --color-text-primary: rgb(226, 232, 240);
-  /* --color-text-secondary: rgb(148, 163, 184); */
-  /* --color-text-primary: #c9d7e3; */
-  --color-text-secondary: #b0a99f;
-  /* Spacing */
-  --spacing-xs: 0.5rem;
-  --spacing-sm: 1rem;
-  --spacing-md: 2rem;
-  --spacing-lg: 3rem;
-  --spacing-xl: 5rem;
-  
-  /* Border Radius */
-  --border-radius-sm: 0.5rem;
-  --border-radius-md: 1rem;
-  --border-radius-lg: 2.5rem;
-  
-  /* Font Sizes */
-  --font-size-xs: 1rem;
-  --font-size-sm: 1.6rem;
-  --font-size-md: 1.7rem;
-  --font-size-lg: 2.5rem;
-  --font-size-xl: 3.5rem;
-  --font-size-xxl: 5rem;
-  
-  /* Shadows */
-  --shadow-sm: 0px 0px 7px #222831;
-}
-
-/* ******************** */
-/* NAVBAR **********/
-/* ******************** */
-#hero-link,
-#skill-link,
-#project-link,
-#contact-link {
-  scroll-margin-top: 10rem;
-}
-
-.hambergerButton {
-  display: none;
-  padding: 1.4rem 1.6rem;
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
-  color: var(--color-text-primary);
-  margin-right: 3.5rem;
-}
-.hambergerIcon {
-  display: block;
-  width: 5rem;
-  padding: 1.4rem 1.6rem;
-  border-radius: 1rem;
   transition: background-color 0.3s, color 0.3s;
 }
 
@@ -164,34 +145,17 @@ body {
   color: black;
 }
 
-/* Change the color of links on hover */
-.topNav a:hover {
-  background-color: #ddd;
-  color: black;
-}
-/* Add an active class to highlight the current page */
-.topNav a.active {
-  border-radius: 1rem;
-  padding: 1.3rem 3rem;
-  font-weight: 900;
-  font-size: 3rem;
-  margin: 20px;
-}
-.navBar,
-.topNav {
-  margin-right: 10rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  /* margin-left: 3rem; */
-}
-.navBar {
-  margin-left: 3rem;
+/* Scroll offset for anchor links */
+#hero-link,
+#skill-link,
+#project-link,
+#contact-link {
+  scroll-margin-top: 10rem;
 }
 
-/* ********************** */
-/* HERO SECTION **********/
-/* ********************** */
+/* ==========================================================================
+   Hero Section
+   ========================================================================== */
 .hero {
   background-color: transparent;
   border-bottom: var(--color-primary) 0.1rem solid;
@@ -229,11 +193,12 @@ body {
   color: var(--color-text-primary);
   font-size: var(--font-size-xl);
   font-weight: 900;
+  font-family: "JetBrains Mono", monospace;
 }
 
-/* ********************** */
-/* SKILL SECTION **********/
-/* ********************** */
+/* ==========================================================================
+   Skill Section
+   ========================================================================== */
 .skillSection {
   display: flex;
   flex-wrap: wrap;
@@ -262,9 +227,9 @@ body {
   border-radius: var(--border-radius-lg);
 }
 
-/* ********************** */
-/* PROJECT SECTION **********/
-/* ********************** */
+/* ==========================================================================
+   Project Section
+   ========================================================================== */
 .projectSection h2 {
   font-size: var(--font-size-lg);
   color: var(--color-text-primary);
@@ -322,9 +287,9 @@ body {
   font-size: var(--font-size-xs);
 }
 
-/* ********************** */
-/* CONTACT **********/
-/* ********************** */
+/* ==========================================================================
+   Contact Section
+   ========================================================================== */
 .contactSection {
   height: 70vh;
   display: flex;
@@ -394,9 +359,9 @@ body {
   fill: var(--color-text-primary);
 }
 
-/* ********************** */
-/* SOCIAL BAR **********/
-/* ********************** */
+/* ==========================================================================
+   Social Bar
+   ========================================================================== */
 .socialBar {
   position: fixed;
   background-color: transparent;
@@ -440,28 +405,9 @@ body {
   height: 10rem;
 }
 
-/* ********************** */
-/* BASE CONTENT************/
-/* ********************** */
-html {
-  font-size: 10px;
-}
-
-body {
-  overflow-x: hidden;
-  /* overflow-y: hidden; */
-  background-color: var(--color-background);
-  font-family: "Inter", serif;
-  margin: 0;
-  padding: 0;
-}
-/* html, body {
-      overflow: hidden;
-    } */
-.body::-webkit-scrollbar {
-  display: none;
-}
-
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
 @media (max-width: 480px) {
   html {
     font-size: 5px;
@@ -472,23 +418,24 @@ body {
   html {
     font-size: 7px;
   }
+
   .socialBar {
     display: none;
   }
+
   .mainContentContainer {
-    margin-left: 0 !important;
-    /* for the social bar */
+    margin-left: 0;
   }
+
   .hambergerButton {
     display: none;
   }
+
   .navBar {
     display: none;
     flex-wrap: wrap;
-    /* phan tu rot xuong ben phai */
-
   }
-  
+
   .navBar.show {
     display: flex !important;
     flex-direction: column;
@@ -506,14 +453,4 @@ body {
   html {
     font-size: 10px;
   }
-}
-.mainContentContainer {
-  /* margin: 0 1rem; */
-  padding: 0;
-  /* for the social bar */
-  margin-left: 7rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }

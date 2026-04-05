@@ -86,7 +86,11 @@ function showPopup() {
     hidePopup();
   });
 
-  typewriter.type();
-  showPopup();
-  // hidePopup();
+  if (!sessionStorage.getItem('welcomeSeen')) {
+    typewriter.type();
+    showPopup();
+    sessionStorage.setItem('welcomeSeen', '1');
+  } else {
+    hidePopup();
+  }
   

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog | LazyMing</title>
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="blog.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+    rel="stylesheet" />
+</head>
+
+<body>
+  <!------Top Navigation----->
+  <nav class="topNav" id="topNav"></nav>
+  <script src="../js/nav.js"></script>
+
+  <div class="mainContentContainer">
+    <div class="blogListSection">
+      <h2>BLOG</h2>
+      <div id="postList" class="postList"></div>
+    </div>
+  </div>
+
+  <script src="../js/navBar.js"></script>
+  <script>
+    fetch('posts/manifest.json')
+      .then(r => r.json())
+      .then(posts => {
+        const list = document.getElementById('postList');
+        posts.forEach(post => {
+          const tags = post.tags.map(t =>
+            `<span class="skillCard skillCardInProjectSection">${t}</span>`
+          ).join('');
+          list.innerHTML += `
+            <a href="post.html?slug=${post.slug}" class="postCard">
+              <div class="postMeta">
+                <span class="postDate">${post.date}</span>
+                <div class="postTags">${tags}</div>
+              </div>
+              <h3 class="postTitle">${post.title}</h3>
+              <p class="postDesc">${post.description}</p>
+            </a>
+          `;
+        });
+      })
+      .catch(() => {
+        document.getElementById('postList').innerHTML =
+          '<p style="color: var(--color-text-secondary);">Could not load posts.</p>';
+      });
+  </script>
+</body>
+
+</html>

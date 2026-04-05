@@ -1,0 +1,9 @@
+[
+  {
+    "slug": "hello_world",
+    "title": "Hello, World!",
+    "date": "2026-04-05",
+    "description": "Im testing the blog system with a simple post.",
+    "tags": ["meta", "blog"]
+  }
+]
