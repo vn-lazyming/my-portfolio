@@ -1,74 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Post | LazyMing</title>
-  <link rel="stylesheet" href="../style.css" />
-  <link rel="stylesheet" href="blog.css" />
+  <title>post · lazyming</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
-    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;0,800;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/shared.css" />
+  <link rel="stylesheet" href="../css/blog.css" />
 </head>
+<body data-texture="grid">
 
-<body>
-  <!------Top Navigation----->
-  <nav class="topNav" id="topNav"></nav>
-  <script src="../js/nav.js"></script>
+<div class="frame-top">
+  <span class="dot"></span>
+  <span><b style="color:var(--fg)">lazyming</b>@portfolio</span>
+  <span class="sep">:</span>
+  <span>~/blog/<span id="frameSlug">post</span></span>
+  <div class="right">
+    <span id="clock">--:--:-- ICT</span>
+    <span class="sep">|</span>
+    <span>● ONLINE</span>
+  </div>
+</div>
 
-  <div class="mainContentContainer">
-    <div class="blogPostSection">
-      <a href="index.html" class="backLink">← Back to Blog</a>
-      <div class="postHeader">
-        <span class="postDate" id="postDate"></span>
-        <div class="postTags" id="postTags"></div>
-      </div>
-      <div id="content" class="markdownContent"></div>
+<div class="post-wrap">
+
+  <a class="back" href="index.html"><span class="arr">←</span> back to blog</a>
+
+  <div class="post-meta">
+    <span class="date" id="postDate">----·--·--</span>
+    <span class="sep">/</span>
+    <span class="tags" id="postTags"></span>
+  </div>
+
+  <h1 class="post-title" id="postTitle">loading…</h1>
+  <p class="post-dek" id="postDek"></p>
+
+  <article id="postContent">
+    <p style="color:var(--fg-fade)">loading post…</p>
+  </article>
+
+  <div class="eop">
+    <span class="sig">make it exist, then perfect it.</span>
+    <div class="share">
+      <a href="#" onclick="event.preventDefault();navigator.clipboard&&navigator.clipboard.writeText(location.href)">copy link</a>
+      <a href="mailto:minhnguyen.080505@gmail.com">email me</a>
+      <a href="https://hackmd.io/@mlc0cVjxSwqv0OoxsUYccw" target="_blank" rel="noopener">hackmd</a>
     </div>
   </div>
 
-  <!-- marked.js from CDN — renders markdown to HTML in the browser -->
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-  <script src="../js/navBar.js"></script>
-  <script>
-    const params = new URLSearchParams(window.location.search);
-    const slug = params.get('slug');
+  <div class="more">
+    <div class="more-h">more writing</div>
+    <div class="more-list" id="moreList"></div>
+  </div>
 
-    if (!slug) {
-      window.location.href = 'index.html';
-    }
+</div>
 
-    // Load post metadata from manifest for date/tags
-    fetch('posts/manifest.json')
-      .then(r => r.json())
-      .then(posts => {
-        const meta = posts.find(p => p.slug === slug);
-        if (meta) {
-          document.title = `${meta.title} | LazyMing`;
-          document.getElementById('postDate').textContent = meta.date;
-          document.getElementById('postTags').innerHTML = meta.tags.map(t =>
-            `<span class="skillCard skillCardInProjectSection">${t}</span>`
-          ).join('');
-        }
-      });
+<div class="frame-bot">
+  <span>0 errors</span>
+  <span class="sep">·</span>
+  <span>lazyming.blog</span>
+  <div class="right">
+    <span>make it exist, then perfect it.<span class="blink">_</span></span>
+  </div>
+</div>
 
-    // Fetch and render the markdown file
-    fetch(`posts/${slug}.md`)
-      .then(r => {
-        if (!r.ok) throw new Error('Post not found');
-        return r.text();
-      })
-      .then(md => {
-        document.getElementById('content').innerHTML = marked.parse(md);
-      })
-      .catch(() => {
-        document.getElementById('content').innerHTML =
-          '<p style="color: var(--color-text-secondary);">Post not found.</p>';
-      });
-  </script>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="../js/clock.js"></script>
+<script>
+  // Set frame slug from URL before blog-post.js runs
+  const _slug = new URLSearchParams(window.location.search).get('slug') || 'post';
+  const _frameSlug = document.getElementById('frameSlug');
+  if (_frameSlug) _frameSlug.textContent = _slug;
+</script>
+<script src="../js/blog-post.js"></script>
 </body>
-
 </html>

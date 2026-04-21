@@ -1,0 +1,372 @@
+/* ==========================================================================
+   Blog Index Page
+   ========================================================================== */
+.blog-wrap {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 64px 2rem 64px;
+  position: relative;
+  z-index: 1;
+}
+
+.blog-head {
+  margin-bottom: 48px;
+}
+
+.blog-head .breadcrumb {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--fg-dim);
+  text-decoration: none;
+  font-size: 12.5px;
+  margin-bottom: 32px;
+  letter-spacing: 0.02em;
+  transition: color .15s;
+}
+
+.blog-head .breadcrumb:hover { color: var(--accent); }
+
+.blog-head .breadcrumb .arr { transition: transform .15s; }
+.blog-head .breadcrumb:hover .arr { transform: translateX(-3px); }
+
+.blog-title {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+  font-size: 12px;
+  color: var(--fg-dim);
+  letter-spacing: 0.02em;
+}
+
+.blog-title .prompt { color: var(--accent); }
+.blog-title .cmd    { color: var(--fg); }
+.blog-title .count  { margin-left: auto; color: var(--fg-fade); font-size: 10px; text-transform: uppercase; letter-spacing: 0.14em; }
+
+/* reuse .proj-list and .proj from portfolio.css */
+
+/* ==========================================================================
+   Blog Post Page
+   ========================================================================== */
+.post-wrap {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 76px 28px 96px;
+  position: relative;
+  z-index: 1;
+}
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--fg-dim);
+  text-decoration: none;
+  font-size: 12.5px;
+  margin-bottom: 44px;
+  letter-spacing: 0.02em;
+  transition: color .15s;
+}
+
+.back:hover { color: var(--accent); }
+.back .arr  { transition: transform .15s; }
+.back:hover .arr { transform: translateX(-3px); }
+
+.post-meta {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 11px;
+  color: var(--fg-fade);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.post-meta .date {
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.post-meta .sep { color: var(--line-2); }
+
+.post-meta .tags { display: flex; gap: 6px; flex-wrap: wrap; }
+
+.post-meta .tags span {
+  padding: 2px 8px;
+  border: 1px solid var(--line-2);
+  border-radius: 2px;
+  font-size: 10px;
+  color: var(--fg-2);
+  letter-spacing: 0.08em;
+}
+
+h1.post-title {
+  font-family: var(--mono);
+  font-weight: 700;
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin: 0 0 18px;
+  color: var(--fg);
+}
+
+.post-dek {
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--fg-dim);
+  font-size: 1.05rem;
+  line-height: 1.55;
+  max-width: 58ch;
+  margin: 0 0 36px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--line);
+}
+
+/* ==========================================================================
+   Article / Markdown Content
+   ========================================================================== */
+article {
+  color: var(--fg-2);
+  font-size: 15.5px;
+  line-height: 1.75;
+}
+
+article > * + * { margin-top: 1.1em; }
+
+article h1 {
+  font-family: var(--mono);
+  color: var(--fg);
+  font-weight: 800;
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin: 0 0 18px;
+}
+
+article h2 {
+  font-family: var(--mono);
+  color: var(--fg);
+  font-weight: 700;
+  font-size: 1.35rem;
+  letter-spacing: -0.01em;
+  margin: 56px 0 14px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+  position: relative;
+}
+
+article h2::before {
+  content: "§";
+  position: absolute;
+  left: -24px; top: 20px;
+  color: var(--accent);
+  font-weight: 400;
+}
+
+article h3 {
+  font-family: var(--mono);
+  color: var(--fg);
+  font-weight: 600;
+  font-size: 1.05rem;
+  margin: 32px 0 8px;
+  letter-spacing: -0.005em;
+}
+
+article p { margin: 0; }
+article p b, article p strong { color: var(--fg); font-weight: 600; }
+
+article a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px dashed var(--accent-dim);
+  transition: border-color .15s;
+}
+
+article a:hover { border-bottom-color: var(--accent); }
+
+article code {
+  font-family: var(--mono);
+  font-size: 13px;
+  padding: 1px 6px;
+  border-radius: 2px;
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  color: var(--accent-hi);
+}
+
+article pre {
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 16px 18px;
+  overflow-x: auto;
+  margin: 24px 0;
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+article pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--fg);
+  font-size: 13px;
+}
+
+article blockquote {
+  margin: 24px 0;
+  padding: 14px 18px;
+  border-left: 2px solid var(--accent);
+  background: var(--accent-dim);
+  border-radius: 0 3px 3px 0;
+  color: var(--fg);
+  font-style: italic;
+  font-family: var(--serif);
+  font-size: 1rem;
+}
+
+article ul, article ol {
+  padding-left: 22px;
+  margin: 12px 0;
+}
+
+article li { margin: 4px 0; }
+article li::marker { color: var(--accent); }
+
+article hr {
+  border: none;
+  border-top: 1px dashed var(--line);
+  margin: 40px 0;
+}
+
+article img {
+  max-width: 100%;
+  border-radius: 4px;
+  margin: 16px 0;
+}
+
+article table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 13px;
+}
+
+article th {
+  background: var(--bg-2);
+  color: var(--accent);
+  padding: 8px 12px;
+  text-align: left;
+  border: 1px solid var(--line);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+article td {
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  color: var(--fg-2);
+}
+
+article tr:hover td { background: var(--bg-2); }
+
+/* ==========================================================================
+   End of Post
+   ========================================================================== */
+.eop {
+  margin-top: 72px;
+  padding: 24px 0;
+  border-top: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 12px;
+  color: var(--fg-dim);
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.eop .sig {
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--fg);
+  font-size: 14px;
+}
+
+.eop .share { display: flex; gap: 14px; }
+
+.eop .share a {
+  color: var(--fg-2);
+  text-decoration: none;
+  border-bottom: 1px dashed var(--line);
+  padding-bottom: 1px;
+  transition: color .15s, border-color .15s;
+}
+
+.eop .share a:hover { color: var(--accent); border-color: var(--accent); }
+
+/* ==========================================================================
+   More Posts
+   ========================================================================== */
+.more { margin-top: 48px; }
+
+.more-h {
+  font-size: 11px;
+  color: var(--fg-fade);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.more-h::after {
+  content: "";
+  flex: 1; height: 1px;
+  background: var(--line);
+}
+
+.more-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.more-list a {
+  padding: 16px 18px;
+  background: var(--bg-2);
+  border-right: 1px solid var(--line);
+  text-decoration: none;
+  color: var(--fg);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: background .15s;
+}
+
+.more-list a:last-child { border-right: none; }
+.more-list a:hover { background: var(--bg-3); }
+.more-list .d { font-size: 10px; color: var(--fg-fade); letter-spacing: 0.12em; text-transform: uppercase; }
+.more-list .t { font-weight: 500; font-size: 14px; letter-spacing: -0.01em; }
+.more-list a:hover .t { color: var(--accent); }
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+@media (max-width: 600px) {
+  .post-wrap { padding: 54px 20px 72px; }
+  article h2::before { display: none; }
+  .more-list { grid-template-columns: 1fr; }
+  .more-list a { border-right: none; border-bottom: 1px solid var(--line); }
+  .more-list a:last-child { border-bottom: none; }
+  .post-meta { flex-wrap: wrap; }
+}

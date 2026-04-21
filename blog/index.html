@@ -1,58 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Blog | LazyMing</title>
-  <link rel="stylesheet" href="../style.css" />
-  <link rel="stylesheet" href="blog.css" />
+  <title>blog · lazyming</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
-    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;0,800;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/shared.css" />
+  <link rel="stylesheet" href="../css/portfolio.css" />
+  <link rel="stylesheet" href="../css/blog.css" />
 </head>
+<body data-texture="grid">
 
-<body>
-  <!------Top Navigation----->
-  <nav class="topNav" id="topNav"></nav>
-  <script src="../js/nav.js"></script>
+<div class="frame-top">
+  <span class="dot"></span>
+  <span><b style="color:var(--fg)">lazyming</b>@portfolio</span>
+  <span class="sep">:</span>
+  <span>~/blog</span>
+  <div class="right">
+    <span id="clock">--:--:-- ICT</span>
+    <span class="sep">|</span>
+    <span>● ONLINE</span>
+  </div>
+</div>
 
-  <div class="mainContentContainer">
-    <div class="blogListSection">
-      <h2>BLOG</h2>
-      <div id="postList" class="postList"></div>
-    </div>
+<div class="blog-wrap">
+  <a class="blog-head__back back" href="../index.html#blog"><span class="arr">←</span> back to index</a>
+
+  <div class="blog-title">
+    <span class="prompt">$</span>
+    <span class="cmd">ls ~/blog/</span>
+    <span class="count" id="postCount">loading…</span>
   </div>
 
-  <script src="../js/navBar.js"></script>
-  <script>
-    fetch('posts/manifest.json')
-      .then(r => r.json())
-      .then(posts => {
-        const list = document.getElementById('postList');
-        posts.forEach(post => {
-          const tags = post.tags.map(t =>
-            `<span class="skillCard skillCardInProjectSection">${t}</span>`
-          ).join('');
-          list.innerHTML += `
-            <a href="post.html?slug=${post.slug}" class="postCard">
-              <div class="postMeta">
-                <span class="postDate">${post.date}</span>
-                <div class="postTags">${tags}</div>
-              </div>
-              <h3 class="postTitle">${post.title}</h3>
-              <p class="postDesc">${post.description}</p>
-            </a>
-          `;
-        });
-      })
-      .catch(() => {
-        document.getElementById('postList').innerHTML =
-          '<p style="color: var(--color-text-secondary);">Could not load posts.</p>';
-      });
-  </script>
-</body>
+  <div class="proj-list" id="postList"></div>
+</div>
 
+<div class="frame-bot">
+  <span>0 errors</span>
+  <span class="sep">·</span>
+  <span>lazyming.blog</span>
+  <div class="right">
+    <span>make it exist, then perfect it.<span class="blink">_</span></span>
+  </div>
+</div>
+
+<script src="../js/clock.js"></script>
+<script>
+  fetch('posts/manifest.json', { cache: 'no-store' })
+    .then(r => r.json())
+    .then(posts => {
+      const list  = document.getElementById('postList');
+      const count = document.getElementById('postCount');
+
+      posts.forEach((p, i) => {
+        const tags = (p.tags || []).map(t => `<span>${t}</span>`).join('');
+        const row  = document.createElement('a');
+        row.className = 'proj';
+        row.href = `post.html?slug=${encodeURIComponent(p.slug)}`;
+        row.innerHTML = `
+          <div class="idx">P.${String(i + 1).padStart(2, '0')}</div>
+          <div class="body">
+            <h3>${p.title}</h3>
+            <p>${p.description || ''}</p>
+            <div class="tags">${tags}</div>
+          </div>
+          <div class="meta">
+            <span class="lang">${p.date}</span>
+            <span class="arr">→</span>
+          </div>`;
+        list.appendChild(row);
+      });
+
+      if (count) count.textContent = `${posts.length} post${posts.length === 1 ? '' : 's'}`;
+    })
+    .catch(() => {
+      document.getElementById('postCount').textContent = '0 posts';
+    });
+</script>
+</body>
 </html>

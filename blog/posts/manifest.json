@@ -1,9 +1,9 @@
 [
   {
-    "slug": "hello_world",
-    "title": "Hello, World!",
+    "slug": "CVE-2018-1160",
+    "title": "CVE-2018-1160",
     "date": "2026-04-05",
-    "description": "Im testing the blog system with a simple post.",
-    "tags": ["meta", "blog"]
+    "description": "A CVE Analysis",
+    "tags": ["netatalk", "CVE analysis", "pre auth rce"]
   }
 ]
