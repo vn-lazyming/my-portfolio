@@ -86,9 +86,9 @@ const INTRO_HTML = `<span class="p">$</span> <span class="k">./whoami</span>
 
 <span class="kw">const</span> <span class="k">baseInfo</span> = {
   <span class="k">name</span>:    <span class="s">'lazyming'</span>,
-  <span class="k">title</span>:   <span class="s">'Security Researcher | Full-Stack Dev'</span>,
-  <span class="k">hobbies</span>: <span class="s">'crafting perfect, beautiful software · system hacking'</span>,
-  <span class="k">motto</span>:   <span class="s">'Make it exist, then perfect it.'</span>
+  <span class="k">title</span>:   <span class="s">'Security Researcher'</span>,
+  <span class="k">hobbies</span>: <span class="s">'linux kernel researcher - hardware hacking - windows os researcher'</span>,
+  <span class="k">motto</span>:   <span class="s">'At least I tried. :D'</span>
 };
 
 <span class="p">$</span> <span class="k">_</span><span class="cur"></span>`;
