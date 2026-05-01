@@ -5,5 +5,12 @@
     "date": "2026-04-05",
     "description": "A CVE Analysis",
     "tags": ["netatalk", "CVE analysis", "pre auth rce"]
+  },
+  {
+    "slug": "CVE-2025-21756",
+    "title": "CVE-2025-21756",
+    "date": "2026-05-1",
+    "description": "Linux kernel day CVE Analysis - a UAF bug in af_vsock.c",
+    "tags": ["linux kernel", "CVE analysis", "use after free"]
   }
 ]

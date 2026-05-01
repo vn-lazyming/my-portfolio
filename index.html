@@ -3,437 +3,273 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>lazyming — security researcher</title>
+  <title>lazyming · field dossier</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;0,800;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/shared.css" />
-  <link rel="stylesheet" href="css/portfolio.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/dossier.css" />
 </head>
-<body data-density="spacious" data-texture="grid" data-fontpair="mono-serif">
+<body>
 
-<!-- ========================= Top bar ========================= -->
-<div class="frame-top">
-  <span class="dot"></span>
-  <span><b style="color:var(--fg)">lazyming</b>@portfolio</span>
-  <span class="sep">:</span>
-  <span>~/</span>
-  <span class="sep hide-sm">·</span>
-  <span class="hide-sm" id="curSection">~</span>
-  <div class="right">
-    <!-- <span class="hide-sm">tmux 0:main*</span> -->
-    <span class="sep hide-sm">|</span>
-    <span id="clock">--:--:-- ICT</span>
-    <span class="sep">|</span>
-    <!-- <span>● ONLINE</span> -->
-  </div>
-</div>
-
-<!-- ========================= Intro overlay ========================= -->
-<div id="intro" class="intro hidden" role="dialog" aria-label="whoami">
-  <div class="box">
-    <div class="bar">
-      <div class="dots"><i></i><i></i><i></i></div>
-      <div class="title">~/whoami.sh — zsh</div>
-      <span>80×24</span>
+<!-- ========================= Intro overlay (intake form) ========================= -->
+<div id="intro" class="intro hidden" role="dialog" aria-label="dossier intake">
+  <div class="intro-card">
+    <div class="intro-strip">
+      <span class="l">file 0805</span>
+      <span class="c">▸ classified</span>
+      <span class="r">read &amp; sign</span>
     </div>
-    <div class="body" id="introBody"></div>
-    <div class="foot">
-      <button class="btn" id="introClose">continue <span class="sigil">↵</span></button>
+    <div class="intro-body" id="introBody"></div>
+    <div class="intro-foot">
+      <span class="stamp">confidential</span>
+      <button type="button" id="introClose">acknowledge ↵</button>
     </div>
   </div>
 </div>
 
-<!-- ========================= Page ========================= -->
-<div class="page">
+<div class="sheet">
 
-  <!-- ---------- Left rail ---------- -->
-  <aside class="rail-l">
-    <div class="label">// index</div>
-    <nav id="sideNav">
-      <a href="#about"    data-sec="about"><span class="num">01</span>about</a>
-      <a href="#now"      data-sec="now"><span class="num">02</span>now</a>
-      <a href="#skills"   data-sec="skills"><span class="num">03</span>skills</a>
-      <a href="#research" data-sec="research"><span class="num">04</span>research <span style="color:var(--warn);margin-left:6px">[sec]</span></a>
-      <a href="#builds"   data-sec="builds"><span class="num">05</span>builds <span style="color:var(--accent);margin-left:6px">[dev]</span></a>
-      <a href="#blog"     data-sec="blog"><span class="num">06</span>blog</a>
-      <a href="#contact"  data-sec="contact"><span class="num">07</span>contact</a>
-    </nav>
+  <div class="sheet-bg">
+    <div class="wm">CONFIDENTIAL</div>
+  </div>
 
-    <div class="label">// meta</div>
-    <div class="meta">
-      <div><span class="k">role</span> &nbsp; security researcher</div>
-      <div><span class="k">org</span> &nbsp;&nbsp; viettel cyber sec</div>
-      <div><span class="k">loc</span> &nbsp;&nbsp; Ho Chi Minh, vn</div>
-      <div><span class="k">tz</span> &nbsp;&nbsp;&nbsp; utc+7</div>
-      <div><span class="k">ver</span> &nbsp;&nbsp; v2.0.0</div>
+  <!-- ============== Top strip ============== -->
+  <div class="strip">
+    <span class="l">field dossier · vol.02</span>
+    <span class="c">▸ personnel file</span>
+    <span class="r">hcmc · vn · 2026</span>
+  </div>
+
+  <!-- ============== Hero ============== -->
+  <section class="hero">
+    <span class="num">ENTRY 00 · IDENTITY</span>
+
+    <h1>
+      lazyming <span class="sig">:D</span>
+      <span class="alias">— At least I tried. :D</span>
+    </h1>
+    <div class="who">
+      <b>SECURITY RESEARCHER</b> &nbsp;·&nbsp; viettel cyber security &nbsp;·&nbsp; ctf player
     </div>
 
-    <div class="label" style="margin-top:28px">// links</div>
-    <div class="social">
-      <a href="https://github.com/lazymingg" target="_blank" rel="noopener">github <span class="arr">→</span></a>
-      <a href="https://www.linkedin.com/in/minh-nguy%E1%BB%85n-v%C4%83n-3a806635b/" target="_blank" rel="noopener">linkedin <span class="arr">→</span></a>
-      <a href="https://hackmd.io/@mlc0cVjxSwqv0OoxsUYccw" target="_blank" rel="noopener">hackmd <span class="arr">→</span></a>
-      <a href="mailto:minhnguyen.080505@gmail.com">email <span class="arr">→</span></a>
+    <p class="lede">
+      Hi im lazyming am a security researcher at  <span class="mark">Viettel Cyber Security</span> now focusing on  <span class="redact">linux kernel exploitation, hardware security, iot security </s></span>
+      <em>Make it exist, then perfect it.</em>
+    </p>
+  </section>
+
+  <!-- ============== Vitals ============== -->
+  <div class="vitals">
+    <div class="vital"><div class="k">role</div><div class="v"><b>Security Researcher</b></div></div>
+    <div class="vital"><div class="k">organisation</div><div class="v">Viettel Cyber Security</div></div>
+    <div class="vital"><div class="k">specialty</div><div class="v">linux kernel · pwn · rev · iot security · hardware security</div></div>
+    <div class="vital"><div class="k">station</div><div class="v">Hồ Chí Minh, VN · UTC+7</div></div>
+    <!-- <div class="vital"><div class="k">issued</div><div class="v">2026·05·01</div></div> -->
+  </div>
+
+  <div class="orn">· · ·</div>
+
+  <!-- ============== 01 NOW ============== -->
+  <section>
+    <div class="h-row">
+      <span class="num">01</span>
+      <h2 class="name">currently</h2>
+      <span class="meta">apr · 2026</span>
     </div>
-  </aside>
 
-  <!-- ---------- Main ---------- -->
-  <main>
-
-    <!-- ============ 01 ABOUT ============ -->
-    <section class="section hero" id="about">
-      <div class="section-head">
-        <span class="prompt">$</span>
-        <span class="cmd">cat ~/about.md</span>
-        <span class="tag">01 · identity</span>
+    <div class="log">
+      <div class="ent">
+        <span class="key">learning</span>
+        <span class="val">
+          <b>linux kernel</b> exploitation, <b>hardware security</b>, <b>iot security</b>
+          <small>im just a new researcher in these areas</small>
+        </span>
       </div>
-
-      <h1>hi, i'm <span class="slash">/</span>lazyming<span class="cur"></span></h1>
-
-      <div class="tags">
-        <span class="tag-chip primary">security researcher</span>
-        <!-- <span class="tag-chip">full-stack developer</span> -->
-        <span class="tag-chip">ctf player</span>
-        <span class="tag-chip">kernel · pwn · web</span>
+      <div class="ent">
+        <span class="key">playing</span>
+        <span class="val">
+          <b>CTF</b> · pwn &amp; rev, when i have time :D 
+        </span>
       </div>
-
-      <p class="lede">
-        Im currently a <b>Security Researcher at Viettel Cyber Security</b> — my focus is
-        <span class="hl">kernel exploitation</span>, <span class="hl">binary exploitation</span>,
-        and may be some web exploit next when i have time :D.
-      </p>
-
-      <div class="whoami">
-        <div class="whoami-head">
-          <div class="dots"><i></i><i></i><i></i></div>
-          <span class="title">baseInfo.js</span>
-          <span class="right">— readonly</span>
-        </div>
-        <div class="whoami-body">
-<pre><span class="kw">const</span> <span class="k">baseInfo</span> = {
-  <span class="k">name</span>:     <span class="s">'lazyming'</span>,<span class="c">         // minh nguyễn văn</span>
-  <span class="k">title</span>:    <span class="s">'Security Researcher'</span>,
-  <span class="k">hobbies</span>:  <span class="s">'lazyy, get rce, finding bugs'</span>,
-  <span class="k">motto</span>:    <span class="s">'Make it exist, then perfect it.'</span>,
-  <span class="k">status</span>:   <span class="s">'currently researching in linux kernel'</span>
-};</pre>
-        </div>
+      <div class="ent">
+        <span class="key">surviving</span>
+        <span class="val">
+          deadlines on school projects :(
+          <small>back to the fun stuff after exams</small>
+        </span>
       </div>
+    </div>
+  </section>
 
-      <div class="motto">
-        <span class="q">motto</span>
-        <blockquote>At least I <span class="em">tried. </span>:D </blockquote>
+  <!-- ============== 02 STACK ============== -->
+  <section>
+    <div class="h-row">
+      <span class="num">02</span>
+      <h2 class="name">capabilities</h2>
+      <span class="meta">tools of the trade</span>
+    </div>
+
+    <div class="skills">
+      <div class="sk">
+        <span class="k">offense</span>
+        <span class="v"><span class="pri">pwn</span> · linux-kernel · rev · ctf · iot security · hardware security / pwntools / GEF</span>
       </div>
-    </section>
-
-    <!-- ============ 02 NOW ============ -->
-    <section class="section" id="now">
-      <div class="section-head">
-        <span class="prompt">$</span>
-        <span class="cmd">./status --now</span>
-        <span class="tag">02 · current</span>
+      <div class="sk">
+        <span class="k">systems</span>
+        <span class="v"><span class="pri">C / C++</span> · python · linux</span>
       </div>
-
-      <div class="now-grid">
-        <div class="now-cell">
-          <div class="k">// learning</div>
-          <div class="v">
-            <b>linux kernel</b> exploit
-            <!-- <small>reading: Linux 6.x slub internals</small> -->
-          </div>
-        </div>
-        <div class="now-cell">
-          <div class="k">// playing</div>
-          <div class="v">
-            <b>CTF</b> weekly · pwn &amp; rev
-            <!-- <small>team: solo / rotating pickups</small> -->
-          </div>
-        </div>
-        <div class="now-cell">
-          <div class="k">// Can't lazy</div>
-          <div class="v">
-            Im suffering with <b>deadlines</b> on school projects :((
-            <small>maybe after exams i can focus on my interests</small>
-          </div>
-        </div>
-        <!-- <div class="now-cell">
-          <div class="k">// shipping</div>
-          <div class="v">
-            <b>this portfolio</b>, v2
-            <small>vue side-projects, misc tooling</small>
-          </div>
-        </div> -->
+      <div class="sk">
+        <span class="k">frontend</span>
+        <span class="v">html · css · javascript · vue.js</span>
       </div>
-    </section>
-
-    <!-- ============ 03 SKILLS ============ -->
-    <section class="section" id="skills">
-      <div class="section-head">
-        <span class="prompt">$</span>
-        <span class="cmd">tree ~/.skills --depth 2</span>
-        <span class="tag">03 · stack</span>
+      <div class="sk">
+        <span class="k">backend</span>
+        <span class="v">express · sqlite</span>
       </div>
-
-      <div class="tree">
-        <div class="group">
-          <span class="grp-name">├─ offense/</span>
-          <span class="grp-items">
-            <span class="pill">pwn</span>
-            <span class="pill">linux-kernel</span>
-            <span class="pill">rev</span>
-            <span class="pill">CTF</span>
-            <span class="pill">gdb / pwntools / GEF</span>
-          </span>
-        </div>
-        <div class="group">
-          <span class="grp-name">├─ systems/</span>
-          <span class="grp-items">
-            <span class="pill">C++</span>
-            <span class="pill">C</span>
-            <span class="pill">Python</span>
-            <span class="pill">Linux</span>
-          </span>
-        </div>
-        <div class="group">
-          <span class="grp-name">├─ frontend/</span>
-          <span class="grp-items">
-            <span class="pill">HTML</span>
-            <span class="pill">CSS</span>
-            <span class="pill">JavaScript</span>
-            <span class="pill">Vue.js</span>
-          </span>
-        </div>
-        <div class="group">
-          <span class="grp-name">├─ backend/</span>
-          <span class="grp-items">
-            <span class="pill">Express</span>
-            <span class="pill">SQLite</span>
-          </span>
-        </div>
-        <div class="group">
-          <span class="grp-name">└─ meta/</span>
-          <span class="grp-items">
-            <!-- <span class="pill">self-learner</span> -->
-            <!-- <span class="pill">writeups</span> -->
-            <span class="pill wink">lazy :D</span>
-          </span>
-          <span class="count">3</span>
-        </div>
+      <div class="sk">
+        <span class="k">meta</span>
+        <span class="v">writeups · self-learner · <i>lazy :D</i></span>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- ============ 04 RESEARCH ============ -->
-    <section class="section" id="research">
-      <div class="section-head">
-        <span class="prompt">$</span>
-        <span class="cmd">ls ./research/</span>
-        <span class="tag sec">04 · [sec]</span>
+  <!-- ============== 03 Daily Blog ============== -->
+  <section>
+    <div class="h-row">
+      <span class="num">03</span>
+      <h2 class="name">Daily Blog</h2>
+      <span class="meta">write my thoughts, and my journey :D</span>
+    </div>
+
+    <!-- <a class="proj sec" href="https://hackmd.io/@mlc0cVjxSwqv0OoxsUYccw" target="_blank" rel="noopener noreferrer">
+      <span class="id">R.01</span>
+      <div>
+        <h3>HackMD — writeups &amp; notes</h3>
+        <p>CTF writeups, pwn &amp; kernel study. Currently in Vietnamese; English coming when I get to it.</p>
+        <div class="tags"><span>binary-exploit</span><span>ctf</span><span>kernel</span></div>
       </div>
+      <span class="arr">→</span>
+      <span class="kind">[sec]</span>
+    </a> -->
+  </section>
 
-      <div class="track-label sec">
-        <span>offense / writeups</span>
-        <span class="bar"></span>
-        <!-- <span style="font-family:var(--mono);color:var(--fg-fade)">2 entries · updated regularly</span> -->
+  <!-- ============== 04 BUILDS ============== -->
+  <section>
+    <div class="h-row">
+      <span class="num">04</span>
+      <h2 class="name">case files · builds</h2>
+      <span class="meta">side projects · experiments</span>
+    </div>
+
+    <a class="proj" href="https://github.com/lazymingg" target="_blank" rel="noopener noreferrer">
+      <span class="id">B.01</span>
+      <div>
+        <h3>github — @lazymingg</h3>
+        <p>Just a collection of random projects and experiments.</p>
+        <div class="tags"><span>source</span><span>misc</span><span>public</span></div>
       </div>
+      <span class="arr">→</span>
+      <span class="kind">[src]</span>
+    </a>
 
-      <div class="proj-list">
-        <a class="proj sec" href="https://hackmd.io/@mlc0cVjxSwqv0OoxsUYccw" target="_blank" rel="noopener">
-          <div class="idx">R.01</div>
-          <div class="body">
-            <h3>HackMD — writeups &amp; notes</h3>
-            <p>Check out my Hackmd note the content is in Vietnamese now, English soon.</p>
-            <div class="tags">
-              <span>binary-exploit</span><span>ctf</span><span>kernel</span>
-            </div>
-          </div>
-          <div class="meta">
-            <!-- <span class="lang">markdown</span> -->
-            <span class="arr">→</span>
-          </div>
+    <a class="proj" href="https://lazymingg.github.io/pomodoro-app/" target="_blank" rel="noopener noreferrer">
+      <span class="id">B.02</span>
+      <div>
+        <h3>pomodoro — focus timer</h3>
+        <p>A small Vue app for managing focus sessions.</p>
+        <div class="tags"><span>vue</span><span>html</span><span>css</span></div>
+      </div>
+      <span class="arr">→</span>
+      <span class="kind">[web]</span>
+    </a>
+
+    <a class="proj" href="https://lazymingg.github.io/Beutiful_heart_drawing/" target="_blank" rel="noopener noreferrer">
+      <span class="id">B.03</span>
+      <div>
+        <h3>heart drawing — click for love</h3>
+        <p>Wanna see some love? Clicked me :DDD.</p>
+        <div class="tags"><span>canvas</span><span>js</span><span>for fun</span></div>
+      </div>
+      <span class="arr">→</span>
+      <span class="kind">[fun]</span>
+    </a>
+  </section>
+
+  <!-- ============== 05 BLOG ============== -->
+  <section id="blog">
+    <div class="h-row">
+      <span class="num">05</span>
+      <h2 class="name">Analysis</h2>
+      <span class="meta" id="blogMeta">loading…</span>
+    </div>
+
+    <div id="blogList"></div>
+    <a class="proj sec" href="https://hackmd.io/@mlc0cVjxSwqv0OoxsUYccw" target="_blank" rel="noopener noreferrer">
+      <span class="id">W.03</span>
+      <div>
+        <h3>My HackMD Page</h3>
+        <p>CTF writeups, pwn &amp; kernel study. you can find more here.</p>
+        <div class="tags"><span>binary-exploit</span><span>ctf</span><span>kernel</span></div>
+      </div>
+      <span class="arr">→</span>
+      <span class="kind">[sec]</span>
+    </a>
+
+    <div class="all-entries">
+      <a href="blog/index.html">all entries →</a>
+    </div>
+  </section>
+
+  <div class="orn">· · ·</div>
+
+  <!-- ============== 06 CONTACT ============== -->
+  <section>
+    <div class="h-row">
+      <span class="num">06</span>
+      <h2 class="name">contact subject</h2>
+      <span class="meta">replies &lt; 24h</span>
+    </div>
+
+    <div class="contact-wrap">
+      <h2>let's <span class="red">work</span> together. <span class="dim">// or just chat.</span></h2>
+      <p>I learn fast and adapt well. Happy to take on things I haven't done before.</p>
+      <div class="actions">
+        <a class="btn primary" href="mailto:minhnguyen.080505@gmail.com">
+          <span class="sig">✉</span> minhnguyen.080505@gmail.com
         </a>
-
-        <!-- <a class="proj sec" href="#" onclick="event.preventDefault()">
-          <div class="idx">R.02</div>
-          <div class="body">
-            <h3>Kernel heap primitives — study log</h3>
-            <p>In-progress notebook on SLUB/SLAB layout, cross-cache attacks, and recent public exploits. Drops here when polished.</p>
-            <div class="tags">
-              <span>linux-kernel</span><span>heap</span><span>wip</span>
-            </div>
-          </div>
-          <div class="meta">
-            <span class="lang">in progress</span>
-            <span class="arr">~</span>
-          </div>
-        </a> -->
-      </div>
-    </section>
-
-    <!-- ============ 05 BUILDS ============ -->
-    <section class="section" id="builds">
-      <div class="section-head">
-        <span class="prompt">$</span>
-        <span class="cmd">ls ./builds/</span>
-        <span class="tag" style="color:var(--accent)">05 · [dev]</span>
-      </div>
-
-      <div class="track-label dev">
-        <span>full-stack / side projects</span>
-        <span class="bar"></span>
-      </div>
-
-      <div class="proj-list">
-        <a class="proj" href="https://github.com/lazymingg" target="_blank" rel="noopener">
-          <div class="idx">B.01</div>
-          <div class="body">
-            <h3>github — @lazymingg</h3>
-            <p>My github profile, not much here yet but if you want you can check it out!</p>
-            <div class="tags"><span>source</span><span>misc</span><span>public</span></div>
-          </div>
-          <div class="meta">
-            <!-- <span class="lang">monorepo-ish</span> -->
-            <span class="arr">→</span>
-          </div>
+        <a class="btn" href="https://github.com/lazymingg" target="_blank" rel="noopener noreferrer">
+          <span class="sig">◇</span> github
         </a>
-
-        <a class="proj" href="https://lazymingg.github.io/pomodoro-app/" target="_blank" rel="noopener">
-          <div class="idx">B.02</div>
-          <div class="body">
-            <h3>pomodoro — focus timer</h3>
-            <p>A small Vue app for managing focus sessions.</p>
-            <div class="tags"><span>vue</span><span>html</span><span>css</span><span>js</span></div>
-          </div>
-          <div class="meta">
-            <!-- <span class="lang">vue · spa</span> -->
-            <span class="arr">→</span>
-          </div>
+        <a class="btn" href="https://www.linkedin.com/in/minh-nguy%E1%BB%85n-v%C4%83n-3a806635b/" target="_blank" rel="noopener noreferrer">
+          <span class="sig">◇</span> linkedin
         </a>
-
-        <a class="proj" href="https://lazymingg.github.io/Beutiful_heart_drawing/" target="_blank" rel="noopener">
-          <div class="idx">B.03</div>
-          <div class="body">
-            <h3>heart drawing — click for love</h3>
-            <p>Wanna see some love ? clicked me :DDD.</p>
-            <div class="tags"><span>canvas</span><span>js</span><span>for fun</span></div>
-          </div>
-          <div class="meta">
-            <!-- <span class="lang">vanilla js</span> -->
-            <span class="arr">→</span>
-          </div>
+        <a class="btn" href="https://hackmd.io/@mlc0cVjxSwqv0OoxsUYccw" target="_blank" rel="noopener noreferrer">
+          <span class="sig">◇</span> hackmd
         </a>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- ============ 06 BLOG ============ -->
-    <section class="section" id="blog">
-      <div class="section-head">
-        <span class="prompt">$</span>
-        <span class="cmd">cat ~/blog/*.md | head</span>
-        <span class="tag">06 · blog</span>
-      </div>
+  <footer>
+    <span><span class="red">●</span> &nbsp; lzm · file 0805 · 2026</span>
+    <span class="ascii">"At least I tried. :D"</span>
+  </footer>
 
-      <div class="track-label dev">
-        <span>Writing my thoughts, my journey</span>
-        <span class="bar"></span>
-      </div>
-
-      <div class="proj-list" id="blogList"></div>
-
-      <div style="margin-top:18px;font-size:12px;color:var(--fg-dim)">
-        <a href="blog/index.html" style="color:var(--accent);text-decoration:none;border-bottom:1px dashed var(--accent);padding-bottom:1px">all posts →</a>
-      </div>
-    </section>
-
-    <!-- ============ 07 CONTACT ============ -->
-    <section class="section" id="contact">
-      <div class="section-head">
-        <span class="prompt">$</span>
-        <span class="cmd">mail -s "hi" lazyming@</span>
-        <span class="tag">07 · contact</span>
-      </div>
-
-      <div class="contact">
-        <h2>say hi :D. <span class="dim">// happy to work with you.</span></h2>
-        <p>I have the ability to learn and adapt well. I am willing to take on things I have never done before.</p>
-        <div class="contact-actions">
-          <a class="btn primary" href="mailto:minhnguyen.080505@gmail.com">
-            <span class="sigil">✉</span> minhnguyen.080505@gmail.com
-          </a>
-          <a class="btn" href="https://github.com/lazymingg" target="_blank" rel="noopener">
-            <span class="sigil">◇</span> github
-          </a>
-          <a class="btn" href="https://www.linkedin.com/in/minh-nguy%E1%BB%85n-v%C4%83n-3a806635b/" target="_blank" rel="noopener">
-            <span class="sigil">◇</span> linkedin
-          </a>
-          <a class="btn" href="https://hackmd.io/@mlc0cVjxSwqv0OoxsUYccw" target="_blank" rel="noopener">
-            <span class="sigil">◇</span> hackmd
-          </a>
-        </div>
-      </div>
-    </section>
-
-  </main>
 </div>
 
-<!-- ========================= Bottom bar ========================= -->
-<div class="frame-bot">
-  <span>0 errors</span>
-  <span class="sep">·</span>
-  <span class="hide-sm">lazyming.v2</span>
-  <span class="sep hide-sm">·</span>
-  <span class="hide-sm hint">
-    <kbd>j</kbd>/<kbd>k</kbd> scroll · <kbd>g</kbd> top · <kbd>G</kbd> bottom · <kbd>?</kbd> whoami · <kbd>;</kbd> tweaks
-  </span>
-  <div class="right">
-    <span>make it exist, then perfect it.<span class="blink">_</span></span>
-  </div>
-</div>
-
-<!-- ========================= Tweaks Panel ========================= -->
-<div id="tweaks-panel">
-  <div class="tp-title">
-    <span><span class="cmd">$</span> tweaks</span>
-    <span>esc to close</span>
-  </div>
-
-  <div class="row">
-    <div class="lab">accent hue</div>
-    <div class="hueRow">
-      <div class="swatch" id="tpSwatch"></div>
-      <input id="tpHue" type="range" min="0" max="360" value="180" step="1" />
-      <span class="huev" id="tpHueV">180</span>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="lab">density</div>
-    <div class="seg" data-key="density">
-      <button data-val="spacious">spacious</button>
-      <button data-val="compact">compact</button>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="lab">background</div>
-    <div class="seg" data-key="texture">
-      <button data-val="grid">grid</button>
-      <button data-val="scanlines">scan</button>
-      <button data-val="noise">noise</button>
-      <button data-val="flat">flat</button>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="lab">type</div>
-    <div class="seg" data-key="fontPair">
-      <button data-val="mono-serif">mono + serif</button>
-      <button data-val="mono-only">mono only</button>
-    </div>
-  </div>
-</div>
-
-<script src="js/clock.js"></script>
-<script src="js/portfolio.js"></script>
+<script src="js/intro.js"></script>
+<script src="js/blog-list.js"></script>
+<script>
+  Blog.renderPostList({
+    manifest:   'blog/posts/manifest.json',
+    listEl:     '#blogList',
+    countEl:    '#blogMeta',
+    linkPrefix: 'blog/post.html?slug=',
+    idPrefix:   'W',
+    limit:      5,
+    kind:       '[log]'
+  });
+</script>
 </body>
 </html>

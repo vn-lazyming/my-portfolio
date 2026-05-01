@@ -3,30 +3,29 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>post · lazyming</title>
+  <title>entry · lazyming</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;0,800;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../css/shared.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/dossier.css" />
   <link rel="stylesheet" href="../css/blog.css" />
 </head>
-<body data-texture="grid">
+<body>
 
-<div class="frame-top">
-  <span class="dot"></span>
-  <span><b style="color:var(--fg)">lazyming</b>@portfolio</span>
-  <span class="sep">:</span>
-  <span>~/blog/<span id="frameSlug">post</span></span>
-  <div class="right">
-    <span id="clock">--:--:-- ICT</span>
-    <span class="sep">|</span>
-    <span>● ONLINE</span>
+<div class="sheet">
+
+  <div class="sheet-bg">
+    <div class="wm">ENTRY</div>
   </div>
-</div>
 
-<div class="post-wrap">
+  <div class="strip">
+    <span class="l">field dossier · vol.02</span>
+    <span class="c">▸ writing entry</span>
+    <span class="r">log</span>
+  </div>
 
-  <a class="back" href="index.html"><span class="arr">←</span> back to blog</a>
+  <a class="blog-back" href="index.html"><span class="arr">←</span> all entries</a>
 
   <div class="post-meta">
     <span class="date" id="postDate">----·--·--</span>
@@ -38,42 +37,31 @@
   <p class="post-dek" id="postDek"></p>
 
   <article id="postContent">
-    <p style="color:var(--fg-fade)">loading post…</p>
+    <p class="muted">loading entry…</p>
   </article>
 
   <div class="eop">
-    <span class="sig">make it exist, then perfect it.</span>
+    <span><span class="red">●</span> &nbsp; end of entry</span>
     <div class="share">
       <a href="#" onclick="event.preventDefault();navigator.clipboard&&navigator.clipboard.writeText(location.href)">copy link</a>
       <a href="mailto:minhnguyen.080505@gmail.com">email me</a>
-      <a href="https://hackmd.io/@mlc0cVjxSwqv0OoxsUYccw" target="_blank" rel="noopener">hackmd</a>
+      <a href="https://hackmd.io/@mlc0cVjxSwqv0OoxsUYccw" target="_blank" rel="noopener noreferrer">hackmd</a>
     </div>
   </div>
 
   <div class="more">
-    <div class="more-h">more writing</div>
+    <div class="more-h">// related entries</div>
     <div class="more-list" id="moreList"></div>
   </div>
 
-</div>
+  <footer>
+    <span><span class="red">●</span> &nbsp; lzm · writing log · 2026</span>
+    <span class="ascii">"make it exist, then perfect it."</span>
+  </footer>
 
-<div class="frame-bot">
-  <span>0 errors</span>
-  <span class="sep">·</span>
-  <span>lazyming.blog</span>
-  <div class="right">
-    <span>make it exist, then perfect it.<span class="blink">_</span></span>
-  </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-<script src="../js/clock.js"></script>
-<script>
-  // Set frame slug from URL before blog-post.js runs
-  const _slug = new URLSearchParams(window.location.search).get('slug') || 'post';
-  const _frameSlug = document.getElementById('frameSlug');
-  if (_frameSlug) _frameSlug.textContent = _slug;
-</script>
 <script src="../js/blog-post.js"></script>
 </body>
 </html>

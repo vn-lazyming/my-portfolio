@@ -1,13 +1,11 @@
-// Reads ?slug=xxx, fetches the .md file, renders it with marked.js,
-// and populates the post header from manifest.json.
+// Reads ?slug= from URL, fetches the .md file, renders with marked.js,
+// populates header from manifest, and lists "more posts".
 
 (function () {
-  const params = new URLSearchParams(window.location.search);
-  const slug   = params.get('slug');
-
+  const slug = new URLSearchParams(window.location.search).get('slug');
   if (!slug) { window.location.href = 'index.html'; return; }
 
-  // Populate post header from manifest
+  // Header from manifest
   fetch('posts/manifest.json')
     .then(r => r.json())
     .then(posts => {
@@ -15,41 +13,55 @@
       if (!meta) return;
 
       document.title = `${meta.title} · lazyming`;
+      setText('postDate',  fmtDate(meta.date));
+      setText('postTitle', meta.title);
 
-      const dateEl = document.getElementById('postDate');
+      // .post-dek:empty { display: none } in CSS handles missing description
+      setText('postDek', meta.description || '');
+
       const tagsEl = document.getElementById('postTags');
-      const titleEl = document.getElementById('postTitle');
-      const dekEl  = document.getElementById('postDek');
+      if (tagsEl) {
+        tagsEl.innerHTML = (meta.tags || []).map(t => `<span>${esc(t)}</span>`).join('');
+      }
 
-      if (dateEl)  dateEl.textContent = meta.date.replace(/-/g, ' · ');
-      if (tagsEl)  tagsEl.innerHTML = (meta.tags || []).map(t => `<span>${t}</span>`).join('');
-      if (titleEl) titleEl.textContent = meta.title;
-      if (dekEl && meta.description) dekEl.textContent = meta.description;
-
-      // Populate "more posts" with up to 2 other posts
-      const others = posts.filter(p => p.slug !== slug).slice(0, 2);
+      const others = posts.filter(p => p.slug !== slug).slice(0, 3);
       const moreList = document.getElementById('moreList');
-      if (moreList) {
+      if (moreList && others.length) {
         moreList.innerHTML = others.map(p => `
           <a href="post.html?slug=${encodeURIComponent(p.slug)}">
-            <span class="d">${p.date.replace(/-/g, ' · ')} · ${(p.tags || []).join(' · ')}</span>
-            <span class="t">${p.title} →</span>
+            <span class="d">${esc(fmtDate(p.date))} · ${esc((p.tags || []).join(' / '))}</span>
+            <span class="t">${esc(p.title)} →</span>
           </a>`).join('');
       }
     });
 
-  // Fetch and render the markdown file
+  // Body — fetch markdown, render with marked
   fetch(`posts/${slug}.md`)
-    .then(r => {
-      if (!r.ok) throw new Error('not found');
-      return r.text();
-    })
+    .then(r => { if (!r.ok) throw new Error('not found'); return r.text(); })
     .then(md => {
-      const articleEl = document.getElementById('postContent');
-      if (articleEl) articleEl.innerHTML = marked.parse(md);
+      const article = document.getElementById('postContent');
+      if (article) article.innerHTML = marked.parse(md);
     })
     .catch(() => {
-      const articleEl = document.getElementById('postContent');
-      if (articleEl) articleEl.innerHTML = '<p style="color:var(--fg-fade)">Post not found.</p>';
+      const article = document.getElementById('postContent');
+      if (article) article.innerHTML = '<p class="muted">Entry not found.</p>';
     });
+
+  function setText(id, val) {
+    const el = document.getElementById(id);
+    if (el) el.textContent = val;
+  }
+
+  function fmtDate(s) {
+    return (s || '').replace(/-/g, '·');
+  }
+
+  function esc(s) {
+    return String(s ?? '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
 })();

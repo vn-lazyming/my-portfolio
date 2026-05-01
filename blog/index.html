@@ -3,81 +3,57 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>blog · lazyming</title>
+  <title>writing · lazyming</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;0,800;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../css/shared.css" />
-  <link rel="stylesheet" href="../css/portfolio.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/dossier.css" />
   <link rel="stylesheet" href="../css/blog.css" />
 </head>
-<body data-texture="grid">
+<body>
 
-<div class="frame-top">
-  <span class="dot"></span>
-  <span><b style="color:var(--fg)">lazyming</b>@portfolio</span>
-  <span class="sep">:</span>
-  <span>~/blog</span>
-  <div class="right">
-    <span id="clock">--:--:-- ICT</span>
-    <span class="sep">|</span>
-    <span>● ONLINE</span>
-  </div>
-</div>
+<div class="sheet">
 
-<div class="blog-wrap">
-  <a class="blog-head__back back" href="../index.html#blog"><span class="arr">←</span> back to index</a>
-
-  <div class="blog-title">
-    <span class="prompt">$</span>
-    <span class="cmd">ls ~/blog/</span>
-    <span class="count" id="postCount">loading…</span>
+  <div class="sheet-bg">
+    <div class="wm">FIELD NOTES</div>
   </div>
 
-  <div class="proj-list" id="postList"></div>
-</div>
-
-<div class="frame-bot">
-  <span>0 errors</span>
-  <span class="sep">·</span>
-  <span>lazyming.blog</span>
-  <div class="right">
-    <span>make it exist, then perfect it.<span class="blink">_</span></span>
+  <div class="strip">
+    <span class="l">field dossier · vol.02</span>
+    <span class="c">▸ writing log</span>
+    <span class="r">all entries</span>
   </div>
+
+  <a class="blog-back" href="../index.html#blog"><span class="arr">←</span> back to dossier</a>
+
+  <section>
+    <div class="h-row">
+      <span class="num">w/</span>
+      <h2 class="name">writing · index</h2>
+      <span class="meta" id="postCount">loading…</span>
+    </div>
+
+    <div id="postList"></div>
+  </section>
+
+  <footer>
+    <span><span class="red">●</span> &nbsp; lzm · writing log · 2026</span>
+    <span class="ascii">"make it exist, then perfect it."</span>
+  </footer>
+
 </div>
 
-<script src="../js/clock.js"></script>
+<script src="../js/blog-list.js"></script>
 <script>
-  fetch('posts/manifest.json', { cache: 'no-store' })
-    .then(r => r.json())
-    .then(posts => {
-      const list  = document.getElementById('postList');
-      const count = document.getElementById('postCount');
-
-      posts.forEach((p, i) => {
-        const tags = (p.tags || []).map(t => `<span>${t}</span>`).join('');
-        const row  = document.createElement('a');
-        row.className = 'proj';
-        row.href = `post.html?slug=${encodeURIComponent(p.slug)}`;
-        row.innerHTML = `
-          <div class="idx">P.${String(i + 1).padStart(2, '0')}</div>
-          <div class="body">
-            <h3>${p.title}</h3>
-            <p>${p.description || ''}</p>
-            <div class="tags">${tags}</div>
-          </div>
-          <div class="meta">
-            <span class="lang">${p.date}</span>
-            <span class="arr">→</span>
-          </div>`;
-        list.appendChild(row);
-      });
-
-      if (count) count.textContent = `${posts.length} post${posts.length === 1 ? '' : 's'}`;
-    })
-    .catch(() => {
-      document.getElementById('postCount').textContent = '0 posts';
-    });
+  Blog.renderPostList({
+    manifest:   'posts/manifest.json',
+    listEl:     '#postList',
+    countEl:    '#postCount',
+    linkPrefix: 'post.html?slug=',
+    idPrefix:   'W',
+    kind:       p => Blog.fmtDate(p.date)
+  });
 </script>
 </body>
 </html>
