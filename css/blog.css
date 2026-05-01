@@ -1,6 +1,25 @@
 /* ==========================================================================
    Blog Index — reuses .sheet, .strip, .h-row, .proj from dossier.css
    ========================================================================== */
+.blog-h1 {
+  font-family: var(--typewriter);
+  font-weight: 400;
+  font-size: clamp(2rem, 5vw, 2.6rem);
+  line-height: 1.1;
+  letter-spacing: -0.005em;
+  margin-bottom: 28px;
+  color: var(--ink);
+}
+
+.blog-h1 .sig {
+  display: block;
+  font-size: 0.55em;
+  color: var(--ink-3);
+  font-style: italic;
+  margin-top: 6px;
+  letter-spacing: 0.02em;
+}
+
 .blog-back {
   display: inline-flex;
   align-items: center;
@@ -143,8 +162,12 @@ article pre code {
   background: none;
   border: none;
   padding: 0;
+  /* color comes from highlight.js theme; falls back to ink if unset */
   color: var(--ink);
 }
+
+/* highlight.js wraps highlighted code in .hljs — let its theme own the colors */
+article pre code.hljs { color: inherit; background: transparent; padding: 0; }
 
 article blockquote {
   margin: 20px 0;

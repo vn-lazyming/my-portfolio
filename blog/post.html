@@ -10,6 +10,17 @@
   <link rel="stylesheet" href="../css/base.css" />
   <link rel="stylesheet" href="../css/dossier.css" />
   <link rel="stylesheet" href="../css/blog.css" />
+  <!-- Syntax highlighting (one of the two is disabled at runtime by theme.js) -->
+  <link rel="stylesheet" data-theme-light href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11/build/styles/github.min.css" />
+  <link rel="stylesheet" data-theme-dark  href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11/build/styles/github-dark.min.css" disabled />
+  <!-- Set theme before paint to avoid flash of wrong theme -->
+  <script>
+    try {
+      if (sessionStorage.getItem('lm_theme') === 'night') {
+        document.documentElement.setAttribute('data-theme', 'night');
+      }
+    } catch (e) {}
+  </script>
 </head>
 <body>
 
@@ -22,7 +33,11 @@
   <div class="strip">
     <span class="l">field dossier · vol.02</span>
     <span class="c">▸ writing entry</span>
-    <span class="r">log</span>
+    <span class="r">
+      <span>log</span>
+      <span class="theme-hint">← prefer dark?</span>
+      <button type="button" class="theme-toggle attract" data-theme-toggle aria-label="toggle theme">☾ night</button>
+    </span>
   </div>
 
   <a class="blog-back" href="index.html"><span class="arr">←</span> all entries</a>
@@ -61,7 +76,9 @@
 
 </div>
 
+<script src="../js/theme.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11/build/highlight.min.js"></script>
 <script src="../js/blog-post.js"></script>
 </body>
 </html>

@@ -6,7 +6,7 @@ html { scroll-behavior: smooth; }
 a { color: inherit; text-decoration: none; }
 
 /* ==========================================================================
-   Variables
+   Variables — Light (Day Dossier, default)
    ========================================================================== */
 :root {
   --paper:     #f3efe6;
@@ -19,8 +19,34 @@ a { color: inherit; text-decoration: none; }
   --stamp:     #b8453a;
   --highlight: #d4a82c;
 
+  /* paper background tint (rgba ingredient for body bg-image) */
+  --grain-rgb: 28, 26, 23;
+  --grain-opacity: 0.045;
+  --rule-rgb: 184, 69, 58;
+  --rule-opacity: 0.05;
+
   --typewriter: 'Special Elite', 'Courier New', monospace;
   --mono:       'JetBrains Mono', ui-monospace, Menlo, monospace;
+}
+
+/* ==========================================================================
+   Variables — Night (phosphor terminal)
+   ========================================================================== */
+[data-theme="night"] {
+  --paper:     #0a0e0c;
+  --paper-2:   #11161a;
+  --ink:       #c8e6c4;
+  --ink-2:     #9bc59a;
+  --ink-3:     #6a8a6f;
+  --ink-4:     #455a4c;
+  --rule:      #25342b;
+  --stamp:     #ff7a52;
+  --highlight: #f5c842;
+
+  --grain-rgb: 200, 230, 196;
+  --grain-opacity: 0.025;
+  --rule-rgb: 255, 122, 82;
+  --rule-opacity: 0.04;
 }
 
 /* ==========================================================================
@@ -35,12 +61,24 @@ body {
   -webkit-font-smoothing: antialiased;
   min-height: 100vh;
   background-image:
-    linear-gradient(to bottom, transparent 95%, rgba(184,69,58,0.05) 95.5%, transparent 96%),
-    radial-gradient(circle at 1px 1px, rgba(28,26,23,0.045) 1px, transparent 0);
+    linear-gradient(to bottom, transparent 95%, rgba(var(--rule-rgb), var(--rule-opacity)) 95.5%, transparent 96%),
+    radial-gradient(circle at 1px 1px, rgba(var(--grain-rgb), var(--grain-opacity)) 1px, transparent 0);
   background-size: 100% 30px, 5px 5px;
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
-::selection { background: var(--highlight); color: var(--ink); }
+/* CRT scanlines + phosphor glow vignette in night mode */
+[data-theme="night"] body {
+  background-image:
+    repeating-linear-gradient(to bottom,
+      transparent 0, transparent 2px,
+      rgba(200, 230, 196, 0.025) 2px, rgba(200, 230, 196, 0.025) 3px),
+    linear-gradient(to bottom, transparent 95%, rgba(var(--rule-rgb), var(--rule-opacity)) 95.5%, transparent 96%),
+    radial-gradient(circle at 1px 1px, rgba(var(--grain-rgb), var(--grain-opacity)) 1px, transparent 0);
+  background-size: 100% 3px, 100% 30px, 5px 5px;
+}
+
+::selection { background: var(--highlight); color: var(--paper); }
 
 /* Utilities */
 .muted { color: var(--ink-3); }

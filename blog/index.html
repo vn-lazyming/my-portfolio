@@ -10,6 +10,14 @@
   <link rel="stylesheet" href="../css/base.css" />
   <link rel="stylesheet" href="../css/dossier.css" />
   <link rel="stylesheet" href="../css/blog.css" />
+  <!-- Set theme before paint to avoid flash of wrong theme -->
+  <script>
+    try {
+      if (sessionStorage.getItem('lm_theme') === 'night') {
+        document.documentElement.setAttribute('data-theme', 'night');
+      }
+    } catch (e) {}
+  </script>
 </head>
 <body>
 
@@ -22,15 +30,21 @@
   <div class="strip">
     <span class="l">field dossier · vol.02</span>
     <span class="c">▸ writing log</span>
-    <span class="r">all entries</span>
+    <span class="r">
+      <span>all entries</span>
+      <span class="theme-hint">← prefer dark?</span>
+      <button type="button" class="theme-toggle attract" data-theme-toggle aria-label="toggle theme">☾ night</button>
+    </span>
   </div>
 
   <a class="blog-back" href="../index.html#blog"><span class="arr">←</span> back to dossier</a>
 
+  <h1 class="blog-h1">writing log <span class="sig">— field notes &amp; CVE walkthroughs</span></h1>
+
   <section>
     <div class="h-row">
       <span class="num">w/</span>
-      <h2 class="name">writing · index</h2>
+      <h2 class="name">all entries</h2>
       <span class="meta" id="postCount">loading…</span>
     </div>
 
@@ -44,6 +58,7 @@
 
 </div>
 
+<script src="../js/theme.js"></script>
 <script src="../js/blog-list.js"></script>
 <script>
   Blog.renderPostList({

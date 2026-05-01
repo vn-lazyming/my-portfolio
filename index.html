@@ -9,6 +9,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/base.css" />
   <link rel="stylesheet" href="css/dossier.css" />
+  <!-- Set theme before paint to avoid flash of wrong theme -->
+  <script>
+    try {
+      if (sessionStorage.getItem('lm_theme') === 'night') {
+        document.documentElement.setAttribute('data-theme', 'night');
+      }
+    } catch (e) {}
+  </script>
 </head>
 <body>
 
@@ -38,7 +46,11 @@
   <div class="strip">
     <span class="l">field dossier · vol.02</span>
     <span class="c">▸ personnel file</span>
-    <span class="r">hcmc · vn · 2026</span>
+    <span class="r">
+      <span>hcmc · vn · 2026</span>
+      <span class="theme-hint">← prefer dark?</span>
+      <button type="button" class="theme-toggle attract" data-theme-toggle aria-label="toggle theme">☾ night</button>
+    </span>
   </div>
 
   <!-- ============== Hero ============== -->
@@ -258,6 +270,7 @@
 
 </div>
 
+<script src="js/theme.js"></script>
 <script src="js/intro.js"></script>
 <script src="js/blog-list.js"></script>
 <script>

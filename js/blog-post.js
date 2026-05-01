@@ -40,7 +40,12 @@
     .then(r => { if (!r.ok) throw new Error('not found'); return r.text(); })
     .then(md => {
       const article = document.getElementById('postContent');
-      if (article) article.innerHTML = marked.parse(md);
+      if (!article) return;
+      article.innerHTML = marked.parse(md);
+      // Apply syntax highlighting if highlight.js is loaded
+      if (window.hljs) {
+        article.querySelectorAll('pre code').forEach(el => hljs.highlightElement(el));
+      }
     })
     .catch(() => {
       const article = document.getElementById('postContent');
