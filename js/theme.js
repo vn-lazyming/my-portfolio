@@ -13,9 +13,7 @@
     if (night) html.setAttribute('data-theme', 'night');
     else html.removeAttribute('data-theme');
 
-    document.querySelectorAll('[data-theme-toggle]').forEach(b => {
-      b.textContent = night ? '☀ day' : '☾ night';
-    });
+    // Toggle button + hint texts are handled by CSS via [data-when-day]/[data-when-night]
 
     // Swap highlight.js stylesheets if both are loaded
     document.querySelectorAll('link[data-theme-light]').forEach(l => l.disabled = night);

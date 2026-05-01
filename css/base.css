@@ -83,3 +83,9 @@ body {
 /* Utilities */
 .muted { color: var(--ink-3); }
 .red   { color: var(--stamp); }
+
+/* Theme-aware text — show one of two spans based on current theme.
+   Used by the theme toggle button and the "prefer dark/light?" hint. */
+[data-when-night] { display: none; }
+[data-theme="night"] [data-when-day]   { display: none; }
+[data-theme="night"] [data-when-night] { display: inline; }
