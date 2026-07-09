@@ -1,10 +1,10 @@
 [
   {
-    "slug": "CVE-2018-1160",
-    "title": "CVE-2018-1160",
-    "date": "2026-04-05",
-    "description": "A CVE Analysis",
-    "tags": ["netatalk", "CVE analysis", "pre auth rce"]
+    "slug": "CVE-2026-52943",
+    "title": "CVE-2026-52943 — pskb_carve_inside_nonlinear UAF",
+    "date": "2026-07-08",
+    "description": "My first 0-day in the Linux kernel — a UAF in net/core/skbuff.c reachable via RDS, leading to local privilege escalation",
+    "tags": ["linux kernel", "0-day", "use after free", "LPE"]
   },
   {
     "slug": "CVE-2025-21756",
@@ -12,5 +12,19 @@
     "date": "2026-05-1",
     "description": "Linux kernel day CVE Analysis - a UAF bug in af_vsock.c",
     "tags": ["linux kernel", "CVE analysis", "use after free"]
+  },
+  {
+    "slug": "CVE-2025-39682",
+    "title": "CVE-2025-39682",
+    "date": "2026-06-10",
+    "description": "n-day analysis of a TLS rx_list / recvmsg refcount bug in net/tls",
+    "tags": ["linux kernel", "CVE analysis", "TLS"]
+  },
+  {
+    "slug": "CVE-2018-1160",
+    "title": "CVE-2018-1160",
+    "date": "2026-04-05",
+    "description": "A CVE Analysis",
+    "tags": ["netatalk", "CVE analysis", "pre auth rce"]
   }
 ]

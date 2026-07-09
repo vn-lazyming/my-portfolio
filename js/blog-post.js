@@ -23,16 +23,6 @@
       if (tagsEl) {
         tagsEl.innerHTML = (meta.tags || []).map(t => `<span>${esc(t)}</span>`).join('');
       }
-
-      const others = posts.filter(p => p.slug !== slug).slice(0, 3);
-      const moreList = document.getElementById('moreList');
-      if (moreList && others.length) {
-        moreList.innerHTML = others.map(p => `
-          <a href="post.html?slug=${encodeURIComponent(p.slug)}">
-            <span class="d">${esc(fmtDate(p.date))} · ${esc((p.tags || []).join(' / '))}</span>
-            <span class="t">${esc(p.title)} →</span>
-          </a>`).join('');
-      }
     });
 
   // Body — fetch markdown, render with marked
