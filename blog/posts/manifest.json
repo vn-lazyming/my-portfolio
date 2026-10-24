@@ -1,5 +1,12 @@
 [
   {
+    "slug": "CVE-2026-68081",
+    "title": "CVE-2026-68081 — KVM guest-to-host memory leak",
+    "date": "2026-08-21",
+    "description": "0-day in KVM's vmx/nested.c — a missing nested_put_vmcs12_pages on failed VM entry leaks pinned host pages, unnoticed for 8 years",
+    "tags": ["linux kernel", "0-day", "KVM", "memory leak"]
+  },
+  {
     "slug": "CVE-2026-52943",
     "title": "CVE-2026-52943 — pskb_carve_inside_nonlinear UAF",
     "date": "2026-07-08",

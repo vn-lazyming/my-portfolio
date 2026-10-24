@@ -8,7 +8,7 @@
 
   const FORM = `<div class="head">▸ DOSSIER · INTAKE FORM</div>
 <div class="field"><span class="k">name</span>     <span class="v"><b>lazyming</b></span></div>
-<div class="field"><span class="k">title</span>    <span class="v">Security Researcher</span></div>
+<div class="field"><span class="k">title</span>    <span class="v">Vulnerability Researcher</span></div>
 <div class="field"><span class="k">org</span>      <span class="v">Viettel Cyber Security</span></div>
 <div class="field"><span class="k">specialty</span><span class="v">linux kernel · pwn · rev</span></div>
 <div class="field"><span class="k">hobbies</span>  <span class="v">badminton · ctf · get lazy · eating ice cream</span></div>
