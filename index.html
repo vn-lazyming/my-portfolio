@@ -10,14 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,600;1,400;1,600&family=Source+Serif+4:opsz,wght@8..60,600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/base.css" />
-  <!-- Set theme before paint to avoid flash of wrong theme -->
-  <script>
-    try {
-      if (sessionStorage.getItem('lm_theme') === 'night') {
-        document.documentElement.setAttribute('data-theme', 'night');
-      }
-    } catch (e) {}
-  </script>
+  <script src="js/theme.js"></script>
 </head>
 <body>
 
@@ -33,8 +26,8 @@
       <h1>lazyming</h1>
       <p class="role">Vulnerability Researcher · Viettel Cyber Security</p>
       <p class="lede">
-        Hi, I'm lazyming — a vulnerability researcher at Viettel Cyber Security,
-        know a little bit about Linux kernel, hardware hacking, Android internal, and currenlty interested in AI Engineering.
+        Hi, I'm lazyming — a vulnerability researcher at Viettel Cyber Security.
+        I know a little about the Linux kernel, hardware hacking and Android internals, and I'm currently interested in AI engineering.
       </p>
     </section>
 
@@ -79,15 +72,6 @@
 
 </div>
 
-<script src="js/theme.js"></script>
 <script src="js/blog-list.js"></script>
-<script>
-  Blog.renderPostList({
-    manifest:   'blog/posts/manifest.json',
-    listEl:     '#blogList',
-    linkPrefix: 'blog/post.html?slug=',
-    limit:      3
-  });
-</script>
 </body>
 </html>

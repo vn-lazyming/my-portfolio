@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>lazyming</title>
+  <meta name="description" content="Vulnerability research writeups by lazyming." />
   <link rel="icon" href="data:," />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -11,41 +12,38 @@
   <link rel="stylesheet" href="../css/base.css" />
   <link rel="stylesheet" href="../css/blog.css" />
   <!-- Syntax highlighting (one of the two is disabled at runtime by theme.js) -->
-  <link rel="stylesheet" data-theme-light href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.10.0/build/styles/github.min.css" />
-  <link rel="stylesheet" data-theme-dark  href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.10.0/build/styles/github-dark.min.css" disabled />
-  <!-- Set theme before paint to avoid flash of wrong theme -->
-  <script>
-    try {
-      if (sessionStorage.getItem('lm_theme') === 'night') {
-        document.documentElement.setAttribute('data-theme', 'night');
-      }
-    } catch (e) {}
-  </script>
+  <link rel="stylesheet" data-theme-light href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.10.0/build/styles/github.min.css" integrity="sha384-eFTL69TLRZTkNfYZOLM+G04821K1qZao/4QLJbet1pP4tcF+fdXq/9CdqAbWRl/L" crossorigin="anonymous" />
+  <link rel="stylesheet" data-theme-dark  href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.10.0/build/styles/github-dark.min.css" integrity="sha384-wH75j6z1lH97ZOpMOInqhgKzFkAInZPPSPlZpYKYTOqsaizPvhQZmAtLcPKXpLyH" crossorigin="anonymous" disabled />
+  <script src="../js/theme.js"></script>
 </head>
 <body>
 
 <div class="page">
 
   <header class="top">
-    <a class="brand" href="../index.html">lazyming</a>
+    <a class="brand" href="../">lazyming</a>
     <button type="button" class="theme-toggle" data-theme-toggle><span data-when-day>Dark mode</span><span data-when-night>Light mode</span></button>
   </header>
 
-  <main>
-    <a class="back" href="../index.html#writing">← All writing</a>
-
-    <header class="post-head">
+  <main class="post">
+    <aside class="post-aside">
+      <a class="back" href="../#writing">← All writing</a>
       <div class="post-meta">
         <time id="postDate"></time>
         <div class="tags" id="postTags"></div>
       </div>
-      <h1 class="post-title" id="postTitle">Loading…</h1>
-      <p class="post-dek" id="postDek"></p>
-    </header>
+    </aside>
 
-    <article id="postContent">
-      <p class="muted">Loading…</p>
-    </article>
+    <div class="post-body">
+      <header class="post-head">
+        <h1 class="post-title" id="postTitle">Loading…</h1>
+        <p class="post-dek" id="postDek"></p>
+      </header>
+
+      <article id="postContent">
+        <p class="muted">Loading…</p>
+      </article>
+    </div>
   </main>
 
   <footer>
@@ -55,9 +53,8 @@
 
 </div>
 
-<script src="../js/theme.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/marked@15.0.12/marked.min.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.10.0/build/highlight.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked@15.0.12/marked.min.js" integrity="sha384-948ahk4ZmxYVYOc+rxN1H2gM1EJ2Duhp7uHtZ4WSLkV4Vtx5MUqnV+l7u9B+jFv+" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.10.0/build/highlight.min.js" integrity="sha384-GdEWAbCjn+ghjX0gLx7/N1hyTVmPAjdC2OvoAA0RyNcAOhqwtT8qnbCxWle2+uJX" crossorigin="anonymous"></script>
 <script src="../js/blog-post.js"></script>
 </body>
 </html>

@@ -27,7 +27,7 @@
 
 .post-meta .tags { margin-top: 0; }
 
-h1.post-title {
+.post-title {
   font-family: var(--serif);
   font-weight: 600;
   font-size: clamp(1.875rem, 5vw, 2.5rem);
@@ -83,6 +83,8 @@ article h3 {
 article h4, article h5, article h6 { font-size: 1rem; font-weight: 600; margin-top: 1.5em; }
 
 article > :first-child { margin-top: 0; }
+
+article :is(h2, h3) { scroll-margin-top: 24px; }
 
 article strong, article b { font-weight: 600; }
 
@@ -181,9 +183,93 @@ article summary {
 article details[open] summary { margin-bottom: 12px; }
 article details > pre { border: 0; border-radius: 0; background: none; padding: 4px 0 6px; }
 
-/* Light-theme token colours with AA contrast on --surface (github.min.css defaults fall short) */
-:root:not([data-theme="night"]) article .hljs-comment,
-:root:not([data-theme="night"]) article .hljs-code     { color: #57606a; }
-:root:not([data-theme="night"]) article .hljs-keyword,
-:root:not([data-theme="night"]) article .hljs-type     { color: #cf222e; }
-:root:not([data-theme="night"]) article .hljs-built_in { color: #953800; }
+/* Token colours with AA contrast on --surface (the github themes' defaults fall short) */
+:root:not([data-theme="night"]) article :is(.hljs-comment, .hljs-code)                      { color: #57606a; }
+:root:not([data-theme="night"]) article :is(.hljs-keyword, .hljs-type, .hljs-doctag)        { color: #cf222e; }
+:root:not([data-theme="night"]) article :is(.hljs-built_in, .hljs-symbol)                   { color: #953800; }
+:root:not([data-theme="night"]) article :is(.hljs-name, .hljs-selector-tag, .hljs-addition) { color: #116329; }
+[data-theme="night"] article .hljs-section { color: #79c0ff; }
+
+/* ==========================================================================
+   Contents — built by blog-post.js; only shown in the wide layout's aside
+   ========================================================================== */
+.toc { display: none; }
+
+/* ==========================================================================
+   Wide layout (≥ 1024px) — meta hangs in columns 1–3, post in 4–12
+   (--cols / --gutter come from base.css)
+   ========================================================================== */
+@media (min-width: 1024px) {
+  .post {
+    display: grid;
+    grid-template-columns: var(--cols);
+    column-gap: var(--gutter);
+    align-items: start;
+  }
+
+  /* Column fills at most the viewport; the contents list scrolls inside it. */
+  .post-aside {
+    grid-column: 1 / 4;
+    position: sticky;
+    top: 32px;
+    padding-top: 10px;
+    display: flex;
+    flex-direction: column;
+    max-height: calc(100vh - 64px);
+  }
+
+  .post-aside .back { margin-bottom: 32px; align-self: flex-start; }
+
+  .post-aside .post-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 0;
+  }
+
+  .toc {
+    display: block;
+    min-height: 0;
+    overflow-y: auto;
+    margin-top: 40px;
+    font-size: 0.8125rem;
+    line-height: 1.45;
+    overflow-wrap: anywhere;
+  }
+
+  .toc-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+
+  .toc ol { list-style: none; border-left: 1px solid var(--line); }
+
+  .toc a {
+    display: block;
+    padding: 4px 0 4px 14px;
+    margin-left: -1px;
+    border-left: 1px solid transparent;
+    color: var(--muted);
+    transition: color 0.15s;
+  }
+
+  .toc-h3 a { padding-left: 28px; }
+  .toc a:hover { color: var(--text); }
+  .toc a[aria-current] { color: var(--text); border-left-color: var(--accent); }
+
+  .post-body { grid-column: 4 / -1; min-width: 0; }
+
+  .post-title { font-size: 3rem; line-height: 1.12; letter-spacing: -0.02em; }
+
+  .post-dek { font-size: 1.25rem; }
+
+  /* Prose keeps a reading measure; code, tables and details may use the full width. */
+  article > * { max-width: 68ch; }
+  article > pre,
+  article > table,
+  article > details { max-width: none; }
+}

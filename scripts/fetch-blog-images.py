@@ -15,7 +15,6 @@ import re
 import sys
 import time
 import urllib.request
-import urllib.error
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
@@ -40,7 +39,7 @@ def download(url: str, dest: Path) -> bool:
             with urllib.request.urlopen(req, timeout=20) as resp, open(dest, "wb") as f:
                 f.write(resp.read())
             return True
-        except (urllib.error.URLError, urllib.error.HTTPError, TimeoutError, OSError) as e:
+        except OSError as e:  # URLError, HTTPError and timeouts are all OSError
             last_err = e
             if attempt < MAX_ATTEMPTS:
                 wait = RETRY_BACKOFF_SECONDS * (2 ** (attempt - 1))
