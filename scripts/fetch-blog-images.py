@@ -11,6 +11,7 @@ Safe to re-run: already-downloaded images and already-local references are
 skipped, so this can run every time you paste in a new note from HackMD.
 """
 
+import html
 import re
 import sys
 import time
@@ -36,8 +37,9 @@ def download(url: str, dest: Path) -> bool:
     last_err = None
     for attempt in range(1, MAX_ATTEMPTS + 1):
         try:
-            with urllib.request.urlopen(req, timeout=20) as resp, open(dest, "wb") as f:
-                f.write(resp.read())
+            with urllib.request.urlopen(req, timeout=20) as resp:
+                data = resp.read()
+            dest.write_bytes(data)  # only after a full read, so a dropped connection leaves no stub
             return True
         except OSError as e:  # URLError, HTTPError and timeouts are all OSError
             last_err = e
@@ -93,7 +95,7 @@ def process_post(md_path: Path, dry_run: bool) -> tuple[int, int, int]:
         alt = m.group("alt")
         w, h = m.group("w"), m.group("h")
         if w:
-            attrs = f'src="{rel_href}" alt="{alt}" width="{w}"'
+            attrs = f'src="{rel_href}" alt="{html.escape(alt)}" width="{w}"'
             if h:
                 attrs += f' height="{h}"'
             new_text = f"<img {attrs}>"

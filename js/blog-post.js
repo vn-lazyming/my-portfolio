@@ -88,12 +88,14 @@
 
     const links = new Map([...toc.querySelectorAll('a')].map(a => [a.hash.slice(1), a]));
     let current, ticking = false;
-    // Active section = last heading above a line 30% down the viewport. A scroll
-    // listener (not IntersectionObserver) so big jumps past several headings still update.
+    // Active section = last heading scrolled to the top (the last one at page end,
+    // since short final sections never get there). A scroll listener (not
+    // IntersectionObserver) so big jumps past several headings still update.
     const update = () => {
       ticking = false;
-      const line = innerHeight * 0.3;
-      const h = heads.filter(h => h.getBoundingClientRect().top < line).pop() || heads[0];
+      const line = 48; // just past the headings' scroll-margin-top (24px)
+      const atEnd = innerHeight + scrollY >= document.documentElement.scrollHeight - 2;
+      const h = atEnd ? heads.at(-1) : heads.filter(h => h.getBoundingClientRect().top < line).pop() || heads[0];
       current?.removeAttribute('aria-current');
       current = links.get(h.id);
       current.setAttribute('aria-current', 'location');
