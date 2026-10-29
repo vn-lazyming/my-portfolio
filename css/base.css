@@ -120,6 +120,21 @@ body {
   margin-top: 24px;
 }
 
+.hero .cta { margin-top: 28px; }
+
+.btn {
+  display: inline-block;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--bg);
+  background: var(--text);
+  border-radius: 6px;
+  padding: 9px 18px;
+  transition: background-color 0.15s;
+}
+
+.btn:hover { background: var(--accent); }
+
 /* ==========================================================================
    Sections
    ========================================================================== */
