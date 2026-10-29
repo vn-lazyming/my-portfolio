@@ -6,7 +6,9 @@
   const html = document.documentElement;
 
   // Always default to day; honor session-level choice if user toggled this session
-  apply(sessionStorage.getItem(KEY) || 'day');
+  let saved = null;
+  try { saved = sessionStorage.getItem(KEY); } catch (e) {}
+  apply(saved || 'day');
 
   function apply(theme) {
     const night = theme === 'night';
@@ -22,7 +24,7 @@
 
   function toggle() {
     const next = html.getAttribute('data-theme') === 'night' ? 'day' : 'night';
-    sessionStorage.setItem(KEY, next);
+    try { sessionStorage.setItem(KEY, next); } catch (e) {}
     apply(next);
   }
 

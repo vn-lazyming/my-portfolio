@@ -8,7 +8,7 @@
   },
   {
     "slug": "CVE-2026-52943",
-    "title": "CVE-2026-52943 — pskb_carve_inside_nonlinear UAF",
+    "title": "CVE-2026-52943 — Linux kernel LPE, UAF in net/core/skbuff.c",
     "date": "2026-07-08",
     "description": "My first 0-day in the Linux kernel — a UAF in net/core/skbuff.c reachable via RDS, leading to local privilege escalation",
     "tags": ["linux kernel", "0-day", "use after free", "LPE"]
@@ -16,7 +16,7 @@
   {
     "slug": "CVE-2025-21756",
     "title": "CVE-2025-21756",
-    "date": "2026-05-1",
+    "date": "2026-05-01",
     "description": "Linux kernel day CVE Analysis - a UAF bug in af_vsock.c",
     "tags": ["linux kernel", "CVE analysis", "use after free"]
   },

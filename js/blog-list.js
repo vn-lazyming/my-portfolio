@@ -4,21 +4,14 @@
 //   Blog.renderPostList({
 //     manifest:    'blog/posts/manifest.json',  // path to manifest
 //     listEl:      '#blogList',                 // container for posts
-//     countEl:     '#blogMeta',                 // count text element (optional)
 //     linkPrefix:  'blog/post.html?slug=',      // href prefix
-//     idPrefix:    'W',                         // entry ID prefix (e.g. "W.01")
-//     limit:       3,                            // posts shown before a "show more" toggle (optional)
-//     kind:        '[log]'                      // string OR (post) => string
+//     limit:       3                            // posts shown before a "show more" toggle (optional)
 //   });
 //
 // When posts.length > limit, a "show more" row is appended; clicking it
 // reveals the rest in place (no page navigation).
 
 window.Blog = (function () {
-
-  function fmtDate(s) {
-    return (s || '').replace(/-/g, '·');
-  }
 
   function escapeHtml(s) {
     return String(s ?? '')
@@ -30,25 +23,21 @@ window.Blog = (function () {
   }
 
   function renderPostList(opts) {
-    const list  = document.querySelector(opts.listEl);
-    const count = opts.countEl ? document.querySelector(opts.countEl) : null;
+    const list = document.querySelector(opts.listEl);
     if (!list) return;
 
-    function makeRow(p, i) {
+    function makeRow(p) {
       const tags = (p.tags || []).map(t => `<span>${escapeHtml(t)}</span>`).join('');
-      const kind = typeof opts.kind === 'function' ? opts.kind(p) : opts.kind;
       const a = document.createElement('a');
-      a.className = 'proj';
+      a.className = 'item';
       a.href = opts.linkPrefix + encodeURIComponent(p.slug);
       a.innerHTML = `
-        <span class="id">${opts.idPrefix}.${String(i + 1).padStart(2, '0')}</span>
-        <div>
+        <div class="item-head">
           <h3>${escapeHtml(p.title)}</h3>
-          <p>${escapeHtml(p.description || '')}</p>
-          <div class="tags">${tags}</div>
+          <time datetime="${escapeHtml(p.date)}">${escapeHtml(p.date)}</time>
         </div>
-        <span class="arr">→</span>
-        ${kind ? `<span class="kind">${escapeHtml(kind)}</span>` : ''}`;
+        <p>${escapeHtml(p.description || '')}</p>
+        ${tags ? `<div class="tags">${tags}</div>` : ''}`;
       return a;
     }
 
@@ -56,32 +45,27 @@ window.Blog = (function () {
       .then(r => r.ok ? r.json() : Promise.reject())
       .then(posts => {
         list.innerHTML = '';
+        posts.sort((a, b) => b.date.localeCompare(a.date));
 
         const shown = opts.limit ? posts.slice(0, opts.limit) : posts;
         const rest  = opts.limit ? posts.slice(opts.limit) : [];
 
-        shown.forEach((p, i) => list.appendChild(makeRow(p, i)));
+        shown.forEach(p => list.appendChild(makeRow(p)));
 
         if (rest.length) {
           const more = document.createElement('button');
           more.type = 'button';
           more.className = 'show-more';
-          more.textContent = `show ${rest.length} more →`;
+          more.textContent = `Show ${rest.length} more`;
           more.addEventListener('click', () => {
-            rest.forEach((p, i) => list.insertBefore(makeRow(p, shown.length + i), more));
+            rest.forEach(p => list.insertBefore(makeRow(p), more));
             more.remove();
           });
           list.appendChild(more);
         }
-
-        if (count) {
-          count.textContent = `${posts.length} entr${posts.length === 1 ? 'y' : 'ies'}`;
-        }
       })
-      .catch(() => {
-        if (count) count.textContent = 'no entries';
-      });
+      .catch(() => { list.innerHTML = '<p class="muted">Couldn\'t load posts.</p>'; });
   }
 
-  return { renderPostList, fmtDate, escapeHtml };
+  return { renderPostList, escapeHtml };
 })();
