@@ -1,5 +1,12 @@
 [
   {
+    "slug": "CVE-2025-23099-galaxy-s26",
+    "title": "Incomplete fix of CVE-2025-23099 — Galaxy S26 NPU LPE",
+    "date": "2026-11-25",
+    "description": "Fuzzing the Galaxy S26 NPU driver with Syzkaller — OOB write/read exploited to root",
+    "tags": ["android", "linux kernel", "NPU", "OOB", "LPE"]
+  },
+  {
     "slug": "CVE-2026-68081",
     "title": "CVE-2026-68081 — KVM guest-to-host memory leak",
     "date": "2026-08-21",
